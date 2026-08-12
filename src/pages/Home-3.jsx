@@ -33,21 +33,21 @@ const MINISTRIES = [
 ];
 
 const PRAYER_REQUESTS = [
-  { id: 1, name: "Família Silva", request: "Pedido de cura para a matriarca.", date: "2026-07-15", category: "Saúde", urgency: "high", prayers: 12 },
-  { id: 2, name: "Irmã Ana", request: "Gratidão pela provisão divina.", date: "2026-07-14", category: "Gratidão", urgency: "low", prayers: 8 },
-  { id: 3, name: "Irmão Pedro", request: "Pedido de sabedoria.", date: "2026-07-13", category: "Orientação", urgency: "medium", prayers: 5 },
-  { id: 4, name: "Família Costa", request: "Pedido de saúde e paz.", date: "2026-07-12", category: "Família", urgency: "medium", prayers: 15 },
+  { id: 1, name: "Família Silva", request: "Pedido de cura para a matriarca.", date: "2026-07-15" },
+  { id: 2, name: "Irmã Ana", request: "Gratidão pela provisão divina.", date: "2026-07-14" },
+  { id: 3, name: "Irmão Pedro", request: "Pedido de sabedoria.", date: "2026-07-13" },
+  { id: 4, name: "Família Costa", request: "Pedido de saúde e paz.", date: "2026-07-12" },
 ];
 
 const GALLERY = [
-  { id: 1, title: "Culto de Domingo", type: "photo", category: "Culto", date: "2026-08-10", likes: 24, liked: false, description: "Culto dominical com Santa Ceia e louvor.", image: "from-primary-500 to-primary-700" },
-  { id: 2, title: "Retiro de Jovens", type: "photo", category: "Jovens", date: "2026-08-05", likes: 18, liked: false, description: "Momento de comunhão e reflexão no retiro anual.", image: "from-accent-500 to-accent-700" },
-  { id: 3, title: "Batismo Coletivo", type: "photo", category: "Culto", date: "2026-07-28", likes: 45, liked: false, description: "Batismo de 12 novos membros na igreja.", image: "from-highlight-500 to-highlight-700" },
-  { id: 4, title: "Conferência 2025", type: "video", category: "Conferência", date: "2026-07-20", likes: 32, liked: false, description: "Conferência anual com pregadores convidados.", image: "from-gold-500 to-gold-700" },
-  { id: 5, title: "Natal da Igreja", type: "photo", category: "Convívio", date: "2025-12-24", likes: 67, liked: false, description: "Celebração de Natal com toda a comunidade.", image: "from-red-500 to-red-700" },
-  { id: 6, title: "Evangelismo de Rua", type: "video", category: "Evangelismo", date: "2026-07-15", likes: 29, liked: false, description: "Ação de evangelismo no centro da cidade.", image: "from-emerald-500 to-emerald-700" },
-  { id: 7, title: "Café Mulheres", type: "photo", category: "Mulheres", date: "2026-07-12", likes: 15, liked: false, description: "Manhã de convívio e comunhão entre mulheres.", image: "from-pink-500 to-pink-700" },
-  { id: 8, title: "Ensaio Louvor", type: "photo", category: "Louvor", date: "2026-07-10", likes: 12, liked: false, description: "Ensaio da equipe de louvor para o culto.", image: "from-secondary-500 to-secondary-700" },
+  { id: 1, title: "Culto de Domingo", type: "photo" },
+  { id: 2, title: "Retiro de Jovens", type: "photo" },
+  { id: 3, title: "Batismo Coletivo", type: "photo" },
+  { id: 4, title: "Conferência 2025", type: "video" },
+  { id: 5, title: "Natal da Igreja", type: "photo" },
+  { id: 6, title: "Evangelismo de Rua", type: "video" },
+  { id: 7, title: "Café Mulheres", type: "photo" },
+  { id: 8, title: "Ensaio Louvor", type: "photo" },
 ];
 
 const formatDate = (dateStr) => {
@@ -77,26 +77,12 @@ export default function Home() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [selectedMinistry, setSelectedMinistry] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
-  const [showChatInfo, setShowChatInfo] = useState(false);
-  const [selectedGalleryItem, setSelectedGalleryItem] = useState(null);
-  const [galleryItems, setGalleryItems] = useState(GALLERY);
-  const [prayingFor, setPrayingFor] = useState([]);
 
   const handlePrayerSubmit = (e) => {
     e.preventDefault();
     alert("Pedido de oração enviado!");
     setPrayerForm({ name: "", request: "" });
     setShowPrayerForm(false);
-  };
-
-  const handlePray = (prayerId) => {
-    setPrayingFor((prev) => {
-      if (prev.includes(prayerId)) {
-        return prev.filter((id) => id !== prayerId);
-      }
-      return [...prev, prayerId];
-    });
   };
 
   return (
@@ -301,23 +287,20 @@ export default function Home() {
             </div>
             <div className="space-y-3">
               {[
-                { title: "Leitura Diária", subtitle: "Capítulo do dia disponível", gradient: "from-primary-500 to-accent-500", icon: "📖", readTime: "5 min" },
-                { title: "Plano de Leitura Anual", subtitle: "Leia a Bíblia em 1 ano", gradient: "from-highlight-500 to-gold-500", icon: "📅", readTime: "15 min/dia" },
-                { title: "Estudos Bíblicos", subtitle: "Material disponível para estudo", gradient: "from-accent-500 to-primary-600", icon: "📚", readTime: "30 min" },
+                { title: "Leitura Diária", subtitle: "Capítulo do dia disponível", gradient: "from-primary-500 to-accent-500" },
+                { title: "Plano de Leitura Anual", subtitle: "Leia a Bíblia em 1 ano", gradient: "from-highlight-500 to-gold-500" },
+                { title: "Estudos Bíblicos", subtitle: "Material disponível", gradient: "from-accent-500 to-primary-600" },
               ].map((item, i) => (
                 <div key={i} onClick={() => navigate("/bible")} className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-gray-50 to-white border border-gray-100 p-5 hover:shadow-md transition-all duration-300 cursor-pointer">
                   <div className="flex items-center gap-4 relative z-10">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${item.gradient} rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform text-xl`}>
-                      {item.icon}
+                    <div className={`w-12 h-12 bg-gradient-to-br ${item.gradient} rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
                     </div>
                     <div className="flex-1">
                       <h3 className="font-semibold text-secondary-900 group-hover:text-primary-600 transition-colors">{item.title}</h3>
                       <p className="text-sm text-secondary-400">{item.subtitle}</p>
                     </div>
-                    <div className="text-right">
-                      <svg className="w-5 h-5 text-secondary-300 group-hover:text-primary-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                      <p className="text-[10px] text-secondary-400 mt-1">{item.readTime}</p>
-                    </div>
+                    <svg className="w-5 h-5 text-secondary-300 group-hover:text-primary-600 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                   </div>
                 </div>
               ))}
@@ -333,10 +316,9 @@ export default function Home() {
               <button onClick={() => navigate("/gallery")} className="text-sm text-primary-600 font-medium hover:text-primary-700 transition">Ver tudo →</button>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {galleryItems.slice(0, 8).map((item) => (
-                <div key={item.id} onClick={() => setSelectedGalleryItem(item)} className="group relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-300">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.image} opacity-80`}></div>
-                  <div className="absolute inset-0 flex items-center justify-center"><span className="text-white text-xs font-medium px-2 text-center drop-shadow-md">{item.title}</span></div>
+              {GALLERY.map((item) => (
+                <div key={item.id} onClick={() => navigate("/gallery")} className="group relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-300">
+                  <div className="absolute inset-0 flex items-center justify-center"><span className="text-secondary-400 text-xs font-medium px-2 text-center">{item.title}</span></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {item.type === "video" ? (
@@ -353,12 +335,6 @@ export default function Home() {
                       Vídeo
                     </div>
                   )}
-                  <div className="absolute bottom-2 left-2 flex items-center gap-1">
-                    <span className="text-[10px] bg-black/40 backdrop-blur-sm text-white px-1.5 py-0.5 rounded-md flex items-center gap-0.5">
-                      <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                      {item.likes || 0}
-                    </span>
-                  </div>
                 </div>
               ))}
             </div>
@@ -375,15 +351,11 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-1 space-y-4">
                 {isAuthed ? (
-                  <button onClick={() => setShowPrayerForm(!showPrayerForm)} className="w-full px-6 py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-2xl font-semibold hover:shadow-lg hover:shadow-primary-500/30 transition-all duration-300 active:scale-95 flex items-center justify-center gap-2">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                  <button onClick={() => setShowPrayerForm(!showPrayerForm)} className="w-full px-6 py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-2xl font-semibold hover:shadow-lg hover:shadow-primary-500/30 transition-all duration-300 active:scale-95">
                     {showPrayerForm ? "Cancelar" : "+ Novo Pedido"}
                   </button>
                 ) : (
                   <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100 text-center">
-                    <div className="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-                    </div>
                     <p className="text-sm text-secondary-500">Faça login para enviar pedidos.</p>
                   </div>
                 )}
@@ -392,16 +364,6 @@ export default function Home() {
                     <div>
                       <label className="block text-sm font-medium text-secondary-700 mb-2">Nome</label>
                       <input type="text" value={prayerForm.name} onChange={(e) => setPrayerForm({ ...prayerForm, name: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition" placeholder="Seu nome" required />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-secondary-700 mb-2">Categoria</label>
-                      <select className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition text-sm bg-white">
-                        <option>Saúde</option>
-                        <option>Família</option>
-                        <option>Gratidão</option>
-                        <option>Orientação</option>
-                        <option>Outros</option>
-                      </select>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-secondary-700 mb-2">Pedido</label>
@@ -413,35 +375,20 @@ export default function Home() {
               </div>
               <div className="lg:col-span-2">
                 <div className="bg-white rounded-3xl border border-gray-100 shadow-sm divide-y divide-gray-100">
-                  {PRAYER_REQUESTS.map((pr) => {
-                    const isPraying = prayingFor.includes(pr.id);
-                    return (
-                      <div key={pr.id} className="p-5 hover:bg-gray-50 transition-colors">
-                        <div className="flex items-start gap-4">
-                          <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full flex items-center justify-center text-white font-semibold text-sm flex-shrink-0 shadow-md shadow-primary-500/20">{pr.name[0]}</div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center justify-between gap-2">
-                              <div className="flex items-center gap-2">
-                                <h4 className="font-semibold text-secondary-900">{pr.name}</h4>
-                                <span className="text-[10px] bg-primary-50 text-primary-700 px-2 py-0.5 rounded-full font-medium">{pr.category}</span>
-                                <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${pr.urgency === "high" ? "bg-red-100 text-red-700" : pr.urgency === "medium" ? "bg-yellow-100 text-yellow-700" : "bg-green-100 text-green-700"}`}>
-                                  {pr.urgency === "high" ? "Urgente" : pr.urgency === "medium" ? "Médio" : "Normal"}
-                                </span>
-                              </div>
-                              <span className="text-xs text-secondary-400 flex-shrink-0">{pr.date}</span>
-                            </div>
-                            <p className="text-sm text-secondary-600 mt-1 leading-relaxed">{pr.request}</p>
-                            <div className="flex items-center gap-3 mt-2">
-                              <button onClick={() => handlePray(pr.id)} className={`text-xs font-medium transition flex items-center gap-1 ${isPraying ? "text-red-600" : "text-secondary-500 hover:text-red-600"}`}>
-                                <svg className="w-3.5 h-3.5" fill={isPraying ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                                {isPraying ? "A orar" : "Orar"} • {pr.prayers + (isPraying ? 1 : 0)}
-                              </button>
-                            </div>
+                  {PRAYER_REQUESTS.map((pr) => (
+                    <div key={pr.id} className="p-5 hover:bg-gray-50 transition-colors">
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full flex items-center justify-center text-white font-semibold text-sm flex-shrink-0 shadow-md shadow-primary-500/20">{pr.name[0]}</div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-2">
+                            <h4 className="font-semibold text-secondary-900">{pr.name}</h4>
+                            <span className="text-xs text-secondary-400 flex-shrink-0">{pr.date}</span>
                           </div>
+                          <p className="text-sm text-secondary-600 mt-1 leading-relaxed">{pr.request}</p>
                         </div>
                       </div>
-                    );
-                  })}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -450,9 +397,8 @@ export default function Home() {
             {isAuthed && user && (
               <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl border border-gray-100 p-6 shadow-sm sticky top-24">
                 <div className="text-center mb-6">
-                  <div className="w-24 h-24 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto shadow-lg shadow-primary-500/20 relative">
+                  <div className="w-24 h-24 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto shadow-lg shadow-primary-500/20">
                     {user.name?.[0]?.toUpperCase()}
-                    <span className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-2 border-white rounded-full"></span>
                   </div>
                   <div className="mt-4">
                     <h3 className="font-semibold text-secondary-900 text-lg">{user.name}</h3>
@@ -462,27 +408,16 @@ export default function Home() {
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { label: "Eventos", value: "3", gradient: "from-primary-500 to-accent-500", icon: "📅" },
-                    { label: "Mensagens", value: "5", gradient: "from-highlight-500 to-gold-500", icon: "💬" },
-                    { label: "Contribuições", value: "12", gradient: "from-accent-500 to-primary-600", icon: "❤️" },
-                    { label: "Ministério", value: "Jovens", gradient: "from-secondary-500 to-secondary-600", icon: "👥" },
+                    { label: "Eventos", value: "3", gradient: "from-primary-500 to-accent-500" },
+                    { label: "Mensagens", value: "5", gradient: "from-highlight-500 to-gold-500" },
+                    { label: "Contribuições", value: "12", gradient: "from-accent-500 to-primary-600" },
+                    { label: "Ministério", value: "Jovens", gradient: "from-secondary-500 to-secondary-600" },
                   ].map((stat, i) => (
-                    <div key={i} className="bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-md transition-shadow cursor-pointer">
-                      <p className="text-xs text-secondary-400 uppercase tracking-wide mb-1 flex items-center gap-1">
-                        <span>{stat.icon}</span>
-                        {stat.label}
-                      </p>
+                    <div key={i} className="bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-md transition-shadow">
+                      <p className="text-xs text-secondary-400 uppercase tracking-wide mb-1">{stat.label}</p>
                       <p className={`text-xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>{stat.value}</p>
                     </div>
                   ))}
-                </div>
-                <div className="mt-4 space-y-2">
-                  <button onClick={() => navigate("/profile")} className="w-full px-4 py-2.5 bg-primary-600 text-white rounded-xl text-sm font-medium hover:bg-primary-700 transition active:scale-95 shadow-lg shadow-primary-500/20">
-                    Ver Perfil Completo
-                  </button>
-                  <button className="w-full px-4 py-2.5 border border-gray-200 text-secondary-700 rounded-xl text-sm font-medium hover:bg-gray-50 transition active:scale-95">
-                    Editar Perfil
-                  </button>
                 </div>
               </div>
             )}
@@ -494,18 +429,17 @@ export default function Home() {
           <div className="absolute inset-0 opacity-10"><div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,255,255,0.3),transparent_70%)]"></div></div>
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center flex-shrink-0 relative">
+              <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center flex-shrink-0">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-[10px] font-bold flex items-center justify-center">3</span>
               </div>
               <div>
-                <h3 className="text-xl md:text-2xl font-bold mb-2">Receba notificacoes da igreja</h3>
-                <p className="text-white/80 text-sm md:text-base max-w-xl">Eventos, avisos e estudos biblicos directamente no seu telemovel.</p>
+                <h3 className="text-xl md:text-2xl font-bold mb-2">Receba notificações da igreja</h3>
+                <p className="text-white/80 text-sm md:text-base max-w-xl">Eventos, avisos e estudos bíblicos directamente no seu telemóvel.</p>
               </div>
             </div>
-            <button onClick={() => setNotificationsEnabled(!notificationsEnabled)} className={`px-8 py-3.5 rounded-2xl font-bold transition-all duration-300 active:scale-95 shadow-lg whitespace-nowrap flex items-center gap-2 ${notificationsEnabled ? "bg-white/20 text-white border border-white/30" : "bg-white text-primary-700 hover:bg-primary-50"}`}>
+            <button onClick={() => setSelectedMinistry({ name: "Notificações", description: "Configure as suas preferências de notificação para receber avisos sobre eventos, estudos bíblicos e mensagens da igreja." })} className="px-8 py-3.5 bg-white text-primary-700 rounded-2xl font-bold hover:bg-primary-50 transition-all duration-300 active:scale-95 shadow-lg whitespace-nowrap flex items-center gap-2">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-              {notificationsEnabled ? "Notificacoes Ativadas" : "Ativar Notificacoes"}
+              Activar Notificações
             </button>
           </div>
         </section>
@@ -517,33 +451,20 @@ export default function Home() {
               <h2 className="text-2xl md:text-3xl font-bold text-secondary-900">Comunidade</h2>
               <p className="text-secondary-400 mt-1">Converse com outros membros da igreja</p>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="flex items-center gap-1.5 text-sm text-green-600 bg-green-50 px-3 py-1.5 rounded-full">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                24 online
-              </span>
-              <a href="/chat" className="px-4 py-2 bg-primary-600 !text-white rounded-xl text-sm font-medium hover:bg-primary-700 transition shadow-lg shadow-primary-500/20">
-                Abrir Chat
-              </a>
-            </div>
+            <a href="/chat" className="px-4 py-2 bg-primary-600 text-white rounded-xl text-sm font-medium hover:bg-primary-700 transition shadow-lg shadow-primary-500/20">
+              Abrir Chat
+            </a>
           </div>
           <div className="bg-gray-50 rounded-2xl border border-gray-100 p-6 text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-3.46-.588L3 21l1.588-4.632A8.97 8.97 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 border-2 border-white rounded-full text-[10px] font-bold text-white flex items-center justify-center">3</span>
             </div>
             <h3 className="text-lg font-semibold text-secondary-900 mb-2">Grupo da Igreja</h3>
-            <p className="text-sm text-secondary-400 mb-4 max-w-md mx-auto">Partilhe mensagens, fotos e ficheiros com toda a comunidade. Um espaco de comunhao e partilha.</p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a href="/chat" className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition shadow-lg shadow-green-500/20">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-3.46-.588L3 21l1.588-4.632A8.97 8.97 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
-                Entrar no Chat
-              </a>
-              <button onClick={() => setShowChatInfo(true)} className="inline-flex items-center gap-2 px-6 py-3 border border-gray-200 text-secondary-700 rounded-xl font-medium hover:bg-gray-50 transition">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                Ver Membros
-              </button>
-            </div>
+            <p className="text-sm text-secondary-400 mb-4 max-w-md mx-auto">Partilhe mensagens, fotos e ficheiros com toda a comunidade. Um espaço de comunhão e partilha.</p>
+            <a href="/chat" className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition shadow-lg shadow-green-500/20">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-3.46-.588L3 21l1.588-4.632A8.97 8.97 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+              Entrar no Chat
+            </a>
           </div>
         </section>
       </main>
@@ -558,23 +479,12 @@ export default function Home() {
                 <span className="font-bold text-white text-lg">Igreja Conectada</span>
               </div>
               <p className="text-secondary-400 text-sm max-w-md leading-relaxed">Plataforma para aproximar a igreja dos membros, facilitando a comunicação e o acompanhamento espiritual.</p>
-              <div className="flex items-center gap-4 mt-4">
-                <a href="#" className="w-8 h-8 bg-secondary-800 rounded-lg flex items-center justify-center hover:bg-secondary-700 transition">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-                </a>
-                <a href="#" className="w-8 h-8 bg-secondary-800 rounded-lg flex items-center justify-center hover:bg-secondary-700 transition">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
-                <a href="#" className="w-8 h-8 bg-secondary-800 rounded-lg flex items-center justify-center hover:bg-secondary-700 transition">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
-                </a>
-              </div>
             </div>
             <div>
-              <h4 className="font-semibold text-white mb-3">Links Rapidos</h4>
-              <ul className="space-y-2 text-sm text-secondary-400">
-                <li><a href="#" className="hover:text-white transition !text-secondary-400">Sobre nos</a></li>
-                <li><a href="#" className="hover:text-white transition !text-secondary-400">Ministerios</a></li>
+              <h4 className="font-semibold text-white mb-3">Links Rápidos</h4>
+              <ul className="space-y-2 text-sm !text-secondary-400 ">
+                <li><a href="#" className="hover:text-white transition !text-secondary-400">Sobre nós</a></li>
+                <li><a href="#" className="hover:text-white transition !text-secondary-400">Ministérios</a></li>
                 <li><a href="#" className="hover:text-white transition !text-secondary-400">Eventos</a></li>
                 <li><a href="#" className="hover:text-white transition !text-secondary-400">Contacto</a></li>
               </ul>
@@ -586,13 +496,6 @@ export default function Home() {
                 <li>+351 123 456 789</li>
                 <li>Rua da Igreja, 123</li>
               </ul>
-              <div className="mt-4">
-                <h4 className="font-semibold text-white mb-2 text-sm">Newsletter</h4>
-                <div className="flex gap-2">
-                  <input type="email" placeholder="Seu email" className="flex-1 px-3 py-2 bg-secondary-800 border border-secondary-700 rounded-lg text-sm text-white placeholder-secondary-400 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition" />
-                  <button className="px-3 py-2 bg-primary-600 text-white rounded-lg text-sm font-medium hover:bg-primary-700 transition">Subscrever</button>
-                </div>
-              </div>
             </div>
           </div>
           <div className="border-t border-secondary-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
@@ -604,83 +507,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-
-      {/* Gallery Lightbox */}
-      {selectedGalleryItem && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm" onClick={() => setSelectedGalleryItem(null)}>
-          <div className="relative max-w-4xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-            <div className={`w-full h-64 md:h-96 bg-gradient-to-br ${selectedGalleryItem.image} flex items-center justify-center relative`}>
-              <div className="text-center">
-                <p className="text-white font-medium text-xl mb-2">{selectedGalleryItem.title}</p>
-                {selectedGalleryItem.type === "video" && (
-                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto">
-                    <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                )}
-              </div>
-              <button onClick={() => setSelectedGalleryItem(null)} className="absolute top-4 right-4 text-white/80 hover:text-white transition">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-              </button>
-            </div>
-            <div className="p-6">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h3 className="text-xl font-bold text-secondary-900">{selectedGalleryItem.title}</h3>
-                  <p className="text-sm text-secondary-400">{selectedGalleryItem.date} • {selectedGalleryItem.category}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <button onClick={() => {}} className="px-4 py-2 border border-gray-200 rounded-xl text-sm font-medium hover:bg-gray-50 transition flex items-center gap-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                    Descarregar
-                  </button>
-                  <button onClick={() => {}} className="px-4 py-2 border border-gray-200 rounded-xl text-sm font-medium hover:bg-gray-50 transition flex items-center gap-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.5 9 12c0-.5-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
-                    Partilhar
-                  </button>
-                </div>
-              </div>
-              <p className="text-secondary-600 text-sm leading-relaxed">{selectedGalleryItem.description}</p>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Chat Info Modal */}
-      {showChatInfo && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={() => setShowChatInfo(false)}>
-          <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 md:p-8" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-bold text-secondary-900">Membros Online</h3>
-              <button onClick={() => setShowChatInfo(false)} className="text-secondary-400 hover:text-secondary-600 transition">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-              </button>
-            </div>
-            <div className="space-y-3">
-              {[
-                { name: "Irmão Pedro", role: "Líder Jovens", status: "online" },
-                { name: "Irmã Ana", role: "Ministério Mulheres", status: "online" },
-                { name: "Pastor João", role: "Pastor", status: "online" },
-                { name: "Irmã Maria", role: "Louvor", status: "away" },
-                { name: "Irmão Carlos", role: "Homens", status: "online" },
-              ].map((member, i) => (
-                <div key={i} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
-                    {member.name[0]}
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-secondary-900">{member.name}</p>
-                    <p className="text-xs text-secondary-400">{member.role}</p>
-                  </div>
-                  <span className={`w-2.5 h-2.5 rounded-full ${member.status === "online" ? "bg-green-500" : "bg-yellow-500"}`}></span>
-                </div>
-              ))}
-            </div>
-            <button onClick={() => setShowChatInfo(false)} className="w-full mt-6 px-4 py-3 border border-gray-200 text-secondary-700 rounded-xl font-medium hover:bg-gray-50 transition active:scale-95">
-              Fechar
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Modal Dialog */}
       {(selectedEvent || selectedMinistry) && (
