@@ -11,6 +11,7 @@ import Bible from './pages/bible/Bible';
 import Gallery from './pages/gallery/Gallery';
 import Prayers from './pages/prayers/Prayers';
 import Profile from './pages/profile/Profile';
+import Chat from './pages/chat/Chat';
 
 const AppInner = () => {
   const { user, loading } = useAuth();
@@ -32,6 +33,7 @@ const AppInner = () => {
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/prayers" element={<Prayers />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/chat" element={<Chat />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

@@ -105,6 +105,7 @@ export default function Home() {
                 { label: "Eventos", href: "/events" },
                 { label: "Ministérios", href: "/ministries" },
                 { label: "Oração", href: "/prayers" },
+                { label: "Chat", href: "/chat" },
               ].map((item) => (
                 <a key={item.label} href={item.href} className="px-4 py-2 text-sm font-medium text-secondary-600 hover:text-secondary-900 hover:bg-white rounded-lg transition">
                   {item.label}
@@ -415,6 +416,30 @@ export default function Home() {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
               Activar Notificações
             </button>
+          </div>
+        </section>
+
+        {/* Chat da Comunidade */}
+        <section className="bg-white rounded-3xl border border-gray-100 p-6 md:p-8 shadow-sm">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-secondary-900">Comunidade</h2>
+              <p className="text-secondary-400 mt-1">Converse com outros membros da igreja</p>
+            </div>
+            <a href="/chat" className="px-4 py-2 bg-primary-600 text-white rounded-xl text-sm font-medium hover:bg-primary-700 transition shadow-lg shadow-primary-500/20">
+              Abrir Chat
+            </a>
+          </div>
+          <div className="bg-gray-50 rounded-2xl border border-gray-100 p-6 text-center">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-3.46-.588L3 21l1.588-4.632A8.97 8.97 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+            </div>
+            <h3 className="text-lg font-semibold text-secondary-900 mb-2">Grupo da Igreja</h3>
+            <p className="text-sm text-secondary-400 mb-4 max-w-md mx-auto">Partilhe mensagens, fotos e ficheiros com toda a comunidade. Um espaço de comunhão e partilha.</p>
+            <a href="/chat" className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition shadow-lg shadow-green-500/20">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-3.46-.588L3 21l1.588-4.632A8.97 8.97 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+              Entrar no Chat
+            </a>
           </div>
         </section>
       </main>
